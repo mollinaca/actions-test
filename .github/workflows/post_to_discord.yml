@@ -6,7 +6,7 @@ name: Discord Message Sender
 #      - 'discord-test/**'
 on:
   schedule:
-    - cron: '*/1 * * * *'  # 毎分実行
+    - cron: '0 22 * * *'  # 毎日朝7時(JST)
   workflow_dispatch:  # 👈 これを追加すると「Run workflow」ボタンが表示されます
 
 jobs:
