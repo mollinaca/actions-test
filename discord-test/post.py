@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import os
 import requests
-from dotenv import load_dotenv
-load_dotenv()  # take environment variables
+#from dotenv import load_dotenv
+#load_dotenv()  # take environment variables
 
 def main():
     # Webhook URL（先ほどコピーしたURLをここに貼り付け）
