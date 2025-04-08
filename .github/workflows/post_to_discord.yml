@@ -1,0 +1,28 @@
+name: Discord Message Sender
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # 毎分実行
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest  # Ubuntu環境で実行
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3  # リポジトリをクローン
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'  # Pythonのバージョンを指定
+
+    - name: Install dependencies
+      run: |
+        pip install requests
+
+    - name: Set DISCORD_WEBHOOK_URL_TEST environment variable
+      run: echo "DISCORD_WEBHOOK_URL_TEST=${{ secrets.DISCORD_WEBHOOK_URL_TEST }}" >> $GITHUB_ENV
+
+    - name: Run Discord test script
+      run: python ./discord-test/post.py  # スクリプトを実行
