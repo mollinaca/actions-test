@@ -1,9 +1,12 @@
 name: Discord Message Sender
 
+#on:
+#  push:
+#    paths:
+#      - 'discord-test/**'
 on:
-  push:
-    paths:
-      - 'discord-test/**'
+  schedule:
+    - cron: '*/1 * * * *'  # 毎分実行
 
 jobs:
   send_message:
