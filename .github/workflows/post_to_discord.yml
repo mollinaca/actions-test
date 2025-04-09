@@ -12,7 +12,7 @@ on:
 
 jobs:
   send_message:
-    runs-on: ubuntu-latest  # Ubuntu環境で実行
+    runs-on: rpi.local
 
     steps:
     - name: Checkout repository
