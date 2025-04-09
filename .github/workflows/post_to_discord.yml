@@ -23,10 +23,16 @@ jobs:
 #      with:
 #        python-version: '3.12'  # Pythonのバージョンを指定
 
+    - name: Use pyenv Python 3.12
+      run: |
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
+        pyenv shell 3.12
+
     - name: Install dependencies
       run: |
-        python3.11 -m pip install --upgrade pip
-        python3.11 -m pip install requests
+        python -m pip install requests
 
     - name: Set DISCORD_WEBHOOK_URL_TEST environment variable
       run: echo "DISCORD_WEBHOOK_URL_TEST=${{ secrets.DISCORD_WEBHOOK_URL_TEST }}" >> $GITHUB_ENV
