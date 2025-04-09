@@ -30,12 +30,12 @@ jobs:
         eval "$(pyenv init -)"
         pyenv shell 3.12
 
-    - name: Install dependencies
-      run: |
-        python -m pip install requests
+#    - name: Install dependencies
+#      run: |
+#        python -m pip install requests
 
     - name: Set DISCORD_WEBHOOK_URL_TEST environment variable
       run: echo "DISCORD_WEBHOOK_URL_TEST=${{ secrets.DISCORD_WEBHOOK_URL_TEST }}" >> $GITHUB_ENV
 
     - name: Run Discord test script
-      run: python3.11 ./discord-test/post.py  # スクリプトを実行
+      run: python ./discord-test/post.py  # スクリプトを実行
