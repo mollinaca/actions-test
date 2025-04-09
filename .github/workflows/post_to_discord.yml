@@ -12,7 +12,7 @@ on:
 
 jobs:
   send_message:
-    runs-on: rpi.local
+    runs-on: rpi
 
     steps:
     - name: Checkout repository
