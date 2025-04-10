@@ -31,9 +31,9 @@ jobs:
         eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
         pyenv shell 3.12
-        which python
-        python --version
-        pip list
+#       which python
+#       python --version
+#       pip list
         python ./asana-test/get_a_user.py >>asana_info.json
 
     - name: Run Discord test script
