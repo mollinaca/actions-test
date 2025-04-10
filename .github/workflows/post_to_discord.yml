@@ -34,8 +34,14 @@ jobs:
 #      run: |
 #        python -m pip install requests
 
+    - name: Get Info from Asana
+      id: get_asana_user_info
+      run: |
+        asana_info=$(python ./asana-test/get_a_user.py)
+        echo "asana_info=$asana_info" >> $GITHUB_OUTPUT
+
     - name: Set DISCORD_WEBHOOK_URL_TEST environment variable
       run: echo "DISCORD_WEBHOOK_URL_TEST=${{ secrets.DISCORD_WEBHOOK_URL_TEST }}" >> $GITHUB_ENV
 
     - name: Run Discord test script
-      run: python ./discord-test/post.py  # スクリプトを実行
+      run: python ./discord-test/post.py "${{ steps.get_asana_user_info.outputs.asana_info }}" # スクリプトを実行
