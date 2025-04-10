@@ -34,9 +34,8 @@ jobs:
         which python
         python --version
         pip list
-        asana_info=$(python ./asana-test/get_a_user.py)
-        echo "asana_info=$asana_info" >> $GITHUB_OUTPUT
+        python ./asana-test/get_a_user.py >>asana_info.json
 
     - name: Run Discord test script
       id: run_discord_post
-      run: python ./discord-test/post.py "${{ steps.get_asana_user_info.outputs.asana_info }}" # スクリプトを実行
+      run: python ./discord-test/post.py "$(cat asana_info.json)"
