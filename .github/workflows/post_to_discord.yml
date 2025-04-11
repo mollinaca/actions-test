@@ -6,9 +6,12 @@ name: Discord Message Sender
 #      - 'discord-test/**'
 on:
   schedule:
-    - cron: '* 22 * * *' # JST 7 AM 実行
-#   - cron: '01 * * * *'  # 毎時 01 分に実行
+    - cron: '17 10,22 * * *' # JST 7 AM 実行
+#   - cron: '* 22 * * *' # JST 7 AM 実行
+#   - cron: '01 * * * *' # 毎時 01 分に実行
   workflow_dispatch:  # 👈 これを追加すると「Run workflow」ボタンが表示されます
+  repository_dispatch:
+    types: [repository_dispatch]
 
 jobs:
   send_message:
@@ -31,9 +34,6 @@ jobs:
         eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
         pyenv shell 3.12
-#       which python
-#       python --version
-#       pip list
         python ./asana-test/get_a_user.py >>asana_info.json
 
     - name: Run Discord test script
